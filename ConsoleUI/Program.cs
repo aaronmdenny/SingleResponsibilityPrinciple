@@ -21,17 +21,10 @@ namespace ConsoleUI
 
             Person user = PersonDataCapture.Capture();
 
-            // Checks to make sure first and last names are valid.
-            if (string.IsNullOrWhiteSpace(user.FirstName))
-            {
-                Console.WriteLine("You did not give a valid first name.");
-                StandardMessages.EndApplication();
-                return;
-            }
+            bool isUserValid = PersonValidator.Validate(user);
 
-            if (string.IsNullOrWhiteSpace(user.LastName))
+            if (!isUserValid)
             {
-                Console.WriteLine("You did not give a valid last name.");
                 StandardMessages.EndApplication();
                 return;
             }
